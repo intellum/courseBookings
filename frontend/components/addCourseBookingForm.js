@@ -1,6 +1,6 @@
 import React from 'react';
 import Bluebird from 'bluebird';
-import {DialogTitle, DialogBody, DialogActions} from 'modules/notifications/components/dialogComponents.jsx';
+import {DialogTitle, DialogBody, DialogActions} from 'modules/notifications/components/dialogComponents.js';
 import LP from 'helpers/lp';
 import Moment from 'moment';
 import {FlatButton, Button} from 'aptr-uikit';
