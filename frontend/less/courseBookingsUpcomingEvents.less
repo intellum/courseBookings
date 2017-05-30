@@ -1,0 +1,96 @@
+.course-booking-upcoming-events {
+    float:left;
+    width:60%;
+    @media all and (max-width: 1024px) {
+        width:55%;
+    }
+    @media all and (max-width: 800px) {
+        width:50%;
+    }
+    @media all and (max-width: 760px) {
+        width:100%;
+    }
+}
+
+.course-booking-upcoming-events-title {
+    text-align: center;
+    .font-style-regular-light;
+    .font-color-light;
+    height:32px;
+    line-height: 28px;
+}
+
+.course-booking-upcoming-events-items {
+    position:relative;
+    overflow-y:scroll;
+    height:(420px - (2px * 2) - 32px);
+    background-color:@ui-grey-light;
+}
+
+.course-booking-event-divider {
+    .font-style-micro;
+    text-align: center;
+    margin-top:@space-small;
+}
+
+.course-booking-event-item {
+    position:relative;
+    height:96px;
+    width: 90%;
+    max-width: 512px;
+    margin:@space-small auto;
+    background-size: 100% 100%;
+    background-position: center;
+    transition: background-size 0.3s;
+    @media all and (max-width: 760px) {
+        width:96%;
+        margin:@space-x-small auto;
+    }
+    &:hover {
+        background-size: 108% 108%;
+    }
+}
+
+.course-booking-event-item-shadow {
+    background-color:rgba(0,0,0,0.6);
+    position:absolute;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+
+.course-booking-event-item-content {
+    position:relative;
+    z-index:1;
+    padding:@space-small 80px @space-small @space-small;
+}
+
+.course-booking-event-item-title {
+    color:@ui-primary-text;
+    .font-style-regular-light;
+    margin-bottom:@space-x-small;
+}
+
+.course-booking-event-item-date {
+    .font-style-micro;
+    color:@ui-primary-text;
+    margin-bottom:@space-x-small;
+}
+
+.course-booking-event-item-location {
+    .font-style-micro;
+    .font-color-primary;
+}
+
+.course-booking-event-item-view-button {
+    color:@ui-primary-text;
+    position:absolute;
+    right:@space-small;
+    top:@space-small;
+    text-decoration: underline;
+    .font-style-small;
+    transition:color 0.3s;
+    &:hover {
+        .font-color-primary;
+    }
+}

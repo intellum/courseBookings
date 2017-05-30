@@ -1,0 +1,108 @@
+.course-booking-calendar {
+    float:left;
+    width:40%;
+    height:420px;
+    @media all and (max-width: 1024px) {
+        width:45%;
+    }
+    @media all and (max-width: 800px) {
+        width:50%;
+    }
+    @media all and (max-width: 760px) {
+        display:none;
+    }
+    .react-datepicker {
+        width:100%;
+        border:none;
+        border-radius:0px;
+    }
+    .react-datepicker__month-container {
+        float:none;
+    }
+    .react-datepicker__month {
+        margin:7px 8px 8px;
+    }
+    .react-datepicker__header {
+        border-radius:0px;
+        background-color:#fff;
+        border-bottom:1px solid @ui-grey-light;
+        padding-top:0px;
+    }
+    .react-datepicker__current-month {
+        .font-style-regular-light;
+        .font-color-light;
+        height: 32px;
+        line-height: 28px;
+    }
+    .react-datepicker__day-names {
+        border-top:1px solid @ui-grey-light;
+    }
+    .react-datepicker__day {
+        height:40px;
+        width:40px;
+        line-height: 40px;
+        border-radius:50%;
+        transition:background-color 0.3s, color 0.3s;
+        color:@content-text;
+        background-color:@ui-grey-lightest;
+        &:hover {
+            color:@content-text;
+            background-color:@ui-grey-regular;
+        }
+    }
+    .react-datepicker__day--disabled {
+        background-color:transparent;
+        &:hover {
+            background-color:transparent;
+        }
+    }
+    .react-datepicker__day--outside-month {
+        color:@ui-grey-dark;
+        &:hover {
+            color:@ui-grey-dark;
+        }
+    }
+    .react-datepicker__day-name {
+        width:40px;
+        line-height: 40px;
+    }
+    .react-datepicker__day--today {
+        color:@ui-primary-text;
+        background-color:@primary-color;
+    }
+    .react-datepicker__day--selected {
+        color:@ui-primary-text;
+        background-color:@secondary-color;
+        &:hover {
+            color:@ui-primary-text;
+            background-color:@secondary-color;
+        }
+    }
+    .react-datepicker__navigation {
+        top:6px;
+    }
+    .react-datepicker__navigation--next {
+        border-left-color:@ui-grey-dark;
+        transition:border-right-color 0.3s;
+        &:hover {
+            border-left-color:@primary-color;
+        }
+    }
+    .react-datepicker__navigation--previous {
+        border-right-color:@ui-grey-dark;
+        transition:border-right-color 0.3s;
+        &:hover {
+            border-right-color:@primary-color;
+        }
+    }
+    .react-datepicker__today-button {
+        padding:11px 8px;
+        background-color:@content-background;
+        color:@ui-grey-dark;
+        border-top:1px solid @ui-grey-dark;
+        transition:color 0.3s;
+        &:hover {
+            color:@primary-color;
+        }
+    }
+}
