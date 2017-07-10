@@ -6,6 +6,7 @@ import {
 import {
     FETCH_DASHBOARD_DATA
 } from 'modules/dashboard/actions/dashboardActions';
+import Moment from 'moment';
 
 export default function(state = {}, action) {
     
