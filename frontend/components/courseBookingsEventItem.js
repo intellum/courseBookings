@@ -14,10 +14,14 @@ var CourseBookingEventItem = React.createClass({
     },
 
     getStyles: function() {
+        
+        if (!this.props.item._itemGraphic) return {};
+
         return {
             backgroundImage: "url('" + this.props.item._itemGraphic + "')",
             backgroundRepeat: "no-repeat"
         }
+        
     },
 
     render: function() {
