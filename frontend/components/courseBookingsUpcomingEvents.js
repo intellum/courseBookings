@@ -29,7 +29,7 @@ var CourseBookingsUpcomingEvents = React.createClass({
                 currentMonthIndex = monthIndex;
             }
             return (
-                <div>
+                <div key={courseBooking._id}>
                     {this.renderMonthDivider(courseBooking._startDate, isStartOfMonth)}
                     <ScrollElement name={Moment(courseBooking._startDate).format('DD/MM/YYYY')}/>
                     <CourseBookingsEventItem
