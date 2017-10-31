@@ -51,7 +51,7 @@ Bloom.registerHook('myLearning', function(myLearningData, currentData, callback)
 module.exports = {
 
     createCourseBooking: function(req, callback) {
-        console.log(req.body);
+
         var courseBooking = {
             title: req.body.title,
             displayTitle: req.body.displayTitle,

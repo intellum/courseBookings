@@ -103,8 +103,6 @@ var CourseBookingsContainer = React.createClass({
 
     render: function() {
 
-        console.log(Object.keys(this.props.courseBookings));
-
         if (Object.keys(this.props.courseBookings).length === 0) {
             return null;
         }

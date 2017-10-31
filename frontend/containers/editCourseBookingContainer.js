@@ -51,7 +51,6 @@ const EditCourseBookingContainer = React.createClass({
             this.updateHeader();
         }).bind(this))
         .catch((function(response) {
-            console.log(response);
             if (response.data.error) {
                 this.setState({
                     _hasErrored: true,
@@ -79,7 +78,6 @@ const EditCourseBookingContainer = React.createClass({
     },
 
     onUpdateField: function(model) {
-        console.log(model);
         return this.props.updateCourseBooking(this.props.courseBooking._id, model)
             .then(this.updateHeader);
     },

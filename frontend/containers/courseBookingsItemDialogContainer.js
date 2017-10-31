@@ -63,7 +63,6 @@ var CourseBookingItemDialogContainer = React.createClass({
 });
 
 export default connect(function(state, props) {
-    console.log(state);
     if (props.options.isMyLearning) {
         var courseBooking = _.find(state.bookedCourseBookings, {_id: props.options.courseBookingId});
     } else {

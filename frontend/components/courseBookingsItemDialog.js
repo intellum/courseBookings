@@ -125,8 +125,6 @@ var CourseBookingsItemDialog = React.createClass({
         if (_.includes(item._users, this.props.auth._id)) {
             isUserAlreadyBooked = true;
         }
-
-        console.log('rendering', this.props.courseBooking);
         
         return (
             <div className="dialog default-dialog course-booking-item-dialog">

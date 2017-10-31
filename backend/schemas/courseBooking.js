@@ -12,9 +12,9 @@ module.exports = {
     "_itemGraphic": String,
     "_users": [{type: mongoose.Schema.Types.ObjectId, ref:'User'}],
     "_isPublished": {type: Boolean, default: false},
-    "_createdAt": {type: Date, default: new Date()},
+    "_createdAt": {type: Date, default: Date.now},
     "_createdBy": {type: mongoose.Schema.Types.ObjectId, ref:'User'},
-    "_updatedAt": {type: Date, default: new Date()},
+    "_updatedAt": {type: Date, default: Date.now},
     "_updatedBy": {type: mongoose.Schema.Types.ObjectId, ref:'User'},
     "_groups": [{type: mongoose.Schema.Types.ObjectId, ref:'Group'}]
 }
