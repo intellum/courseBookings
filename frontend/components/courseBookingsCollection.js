@@ -37,7 +37,7 @@ var CourseBookingsCollection = React.createClass({
             return (
                 <div>
                     <AlertInfo 
-                        text="No Course Bookings available"
+                        text={LP('courseBookings', 'noCourseBookingsAvailable', 'titlecase')}
                         type="info"
                     />
                 </div>
@@ -89,7 +89,7 @@ var CourseBookingsCollection = React.createClass({
                     <div className="action-bar-right">
                         <Button 
                             className="action-bar-item"
-                            text="Create Course Booking"
+                            text={LP('courseBookings', 'createCourseBooking', 'titlecase')}
                             type="primary" 
                             icon="book" 
                             onClick={this.props.onCreateCourseBookingClicked}/>

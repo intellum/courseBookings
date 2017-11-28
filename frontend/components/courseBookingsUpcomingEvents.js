@@ -1,4 +1,5 @@
 import React from 'react';
+import LP from 'helpers/lp';
 import Moment from 'moment';
 import CourseBookingsEventItem from './courseBookingsEventItem';
 import Waypoint from 'react-waypoint';
@@ -63,7 +64,7 @@ var CourseBookingsUpcomingEvents = React.createClass({
         return (
             <div className="course-booking-upcoming-events">
                 <div className="course-booking-upcoming-events-title">
-                    Upcoming Events
+                    {LP('courseBookings', 'upcomingEvents', 'titlecase')}
                 </div>
                 <div className="course-booking-upcoming-events-items" id="course-booking-upcoming-events-items">
                     <div className="course-booking-event-divider">
@@ -71,7 +72,7 @@ var CourseBookingsUpcomingEvents = React.createClass({
                             onEnter={(inviewData) => this.onEnter(inviewData, Moment(new Date()))}
                             onLeave={(inviewData) => this.onLeave(inviewData, Moment(new Date()))}
                         />
-                        Today
+                        {LP('courseBookings', 'today', 'sentencecase')}
                     </div>
                     {this.renderUpcomingEventItems()}
                 </div>
