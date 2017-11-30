@@ -1,4 +1,5 @@
 import React from 'react';
+import LP from 'helpers/lp';
 import AlertInfo from 'modules/app/components/alertInfo';
 import {ListItem} from 'aptr-uikit';
 import getUsersFullName from 'helpers/getUsersFullName';
@@ -8,7 +9,7 @@ var EditCourseBookingUsers = React.createClass({
     renderNoUsersAlert: function() {
         if (this.props.courseBooking._users.length === 0) {
             return (
-                <AlertInfo type="info" text="No users are attending this event"/>
+                <AlertInfo type="info" text={LP('courseBookings', 'noUsersAreAttendingThisEvent', 'sentencecase')}/>
             );
         }
     },
@@ -31,7 +32,7 @@ var EditCourseBookingUsers = React.createClass({
         return (
             <div className="edit-course-booking-users">
                 <div className="edit-course-booking-users-title">
-                    {'Users in ' + this.props.courseBooking.title}
+                    {LP('courseBookings', 'usersIn', 'sentencecase')} {this.props.courseBooking.title}
                 </div>
                 <div className="edit-course-booking-users-list">
                     {this.renderNoUsersAlert()}

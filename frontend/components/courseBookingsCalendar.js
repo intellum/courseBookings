@@ -1,4 +1,5 @@
 import React from 'react';
+import LP from 'helpers/lp';
 import DatePicker from 'react-datepicker';
 import Moment from 'moment';
 
@@ -13,7 +14,7 @@ var CourseBookingsCalendar = React.createClass({
                     selected={this.props.selectedDate}
                     onChange={(date) => this.props.onDateSelected(date)}
                     onMonthChange={this.props.onMonthChanged}
-                    todayButton={"Today"}
+                    todayButton={LP('courseBookings', 'today', 'titlecase')}
                     key={this.props.selectedDate}
                     includeDates={_.map(this.props.courseBookings, function(courseBooking) {
                         return Moment(courseBooking._startDate);

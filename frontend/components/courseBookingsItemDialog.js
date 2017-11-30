@@ -56,7 +56,7 @@ var CourseBookingsItemDialog = React.createClass({
                 <div className="course-booking-item-dialog-calendar-invite">
                     <FlatButton
                         icon="calendar-text"
-                        text="Download calendar invite"
+                        text={LP('courseBookings', 'downloadCalendarInvite', 'sentencecase')}
                         onClick={this.props.onDownloadCalendarInviteClicked}
                     />
                 </div>
@@ -71,7 +71,7 @@ var CourseBookingsItemDialog = React.createClass({
             return (
                 <div className="course-booking-item-dialog-booking-button">
                     <Button
-                        text="Cancel My Place"
+                        text={LP('courseBookings', 'cancelMyPlace', 'titlecase')}
                         type="primary"
                         onClick={this.props.onCancelMyPlaceClicked}
                     />
@@ -87,7 +87,7 @@ var CourseBookingsItemDialog = React.createClass({
         return (
             <div className="course-booking-item-dialog-booking-button">
                 <Button
-                    text="Book My Place"
+                    text={LP('courseBookings', 'bookMyPlace', 'titlecase')}
                     type="primary"
                     onClick={this.props.onBookMyPlaceClicked}
                 />
@@ -99,7 +99,8 @@ var CourseBookingsItemDialog = React.createClass({
         var placesLeft = item._places - item._users.length;
         return (
             <div className="course-booking-item-dialog-places-left">
-                <span className="course-booking-item-dialog-places-left-count">{placesLeft}</span> place(s) left
+                <span className="course-booking-item-dialog-places-left-count">{placesLeft} </span> 
+                {LP('courseBookings', 'placesLeft', 'lowercase')}
             </div>
         );
     },
