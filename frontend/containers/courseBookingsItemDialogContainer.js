@@ -1,10 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import CourseBookingItemDialog from '../components/courseBookingsItemDialog';
+import handleContainerError from 'helpers/handleContainerError';
 import {
     bookUserIntoEvent,
     cancelUserFromEvent,
-    downloadCalendarInvite
+    downloadCalendarInvite,
+    fetchCourseBooking
 } from '../actions/courseBookingsActions';
 
 var CourseBookingItemDialogContainer = React.createClass({
@@ -13,8 +15,22 @@ var CourseBookingItemDialogContainer = React.createClass({
         return {
             title: '',
             displayTitle: '',
-            body: ''
+            body: '',
+            _isSyncing: true
         }
+    },
+
+    componentDidMount: function() {
+    
+        this.props.fetchCourseBooking(this.props.options.courseBookingId).then((response) => {
+
+            this.setState({
+                _isSyncing: false
+            });
+        })
+        .catch(error => {
+            handleContainerError(error, this);
+        });
     },
 
     onCancelMyPlaceClicked: function() {
@@ -52,6 +68,7 @@ var CourseBookingItemDialogContainer = React.createClass({
                 courseBooking={this.props.courseBooking}
                 handleDialogAction={this.handleDialogAction}
                 actions={this.props.actions}
+                isSyncing={this.state._isSyncing}
                 auth={this.props.auth}
                 onCancelMyPlaceClicked={this.onCancelMyPlaceClicked}
                 onBookMyPlaceClicked={this.onBookMyPlaceClicked}
@@ -63,17 +80,14 @@ var CourseBookingItemDialogContainer = React.createClass({
 });
 
 export default connect(function(state, props) {
-    if (props.options.isMyLearning) {
-        var courseBooking = _.find(state.bookedCourseBookings, {_id: props.options.courseBookingId});
-    } else {
-        var courseBooking = _.find(state.courseBookingsDashboard, {_id: props.options.courseBookingId});
-    }
+    
     return {
         auth: state.auth,
-        courseBooking: courseBooking
+        courseBooking: state.courseBooking
     }
 }, {
     bookUserIntoEvent,
     cancelUserFromEvent,
-    downloadCalendarInvite
+    downloadCalendarInvite,
+    fetchCourseBooking
 })(CourseBookingItemDialogContainer);

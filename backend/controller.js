@@ -1,4 +1,5 @@
 var Bloom = require(global.app + '/bloom');
+var Promise = require('bluebird');
 var async = require('async');
 var CourseBooking = require('./models/courseBooking');
 var User = require(global.app + '/models/user');
@@ -153,41 +154,46 @@ module.exports = {
         });
     },
 
-    bookUserIntoEvent: function(req, callback) {
-        CourseBooking.findByIdAndUpdate(req.params.id, {
-            $push: {
-                "_users": req.body.userId
-            }
-        }, {new: true}, function(err, courseBooking) {
+    bookUserIntoEvent: Promise.coroutine(function*(req, callback) {
+
+        try {
             
-            if (err) {
-                return callback(err);
-            }
+            var courseBooking = yield CourseBooking.findByIdAndUpdate(req.params.id, {
+                $push: {
+                    "_users": req.body.userId
+                }
+            }, {new: true}).populate({
+                path: '_users',
+                select: 'firstName lastName username email'
+            })
+               
+            
+            return callback(null, {
+                _courseBooking: courseBooking
+            });
+
+        } catch (err) {
+            return callback(err);
+        }
+    }),
+
+    cancelUserFromEvent: Promise.coroutine(function*(req, callback) {
+
+        try {
+            var courseBooking = yield CourseBooking.findByIdAndUpdate(req.params.id, { $pullAll: { "_users": [req.body.userId]}}, { new: true })
+                .populate({
+                    path: '_users',
+                    select: 'firstName lastName username email'
+                });
 
             return callback(null, {
                 _courseBooking: courseBooking
             });
 
-        });
-    },
-
-    cancelUserFromEvent: function(req, callback) {
-        CourseBooking.findByIdAndUpdate(req.params.id, {
-            $pullAll: {
-                "_users": [req.body.userId]
-            }
-        }, {new: true}, function(err, courseBooking) {
-            
-            if (err) {
-                return callback(err);
-            }
-
-            return callback(null, {
-                _courseBooking: courseBooking
-            });
-
-        });
-    },
+        } catch (err) {
+            return callback(err);
+        }
+    }),
 
     downloadInvite: function(req, callback) {
 

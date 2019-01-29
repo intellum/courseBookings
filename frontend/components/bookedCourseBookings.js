@@ -1,4 +1,5 @@
 import React from 'react';
+import LP from 'helpers/lp';
 import CourseBookingsEventItem from './courseBookingsEventItem';
 import AlertInfo from 'modules/app/components/alertInfo';
 
@@ -36,7 +37,7 @@ var BookedCourseBookings = React.createClass({
         if (Object.keys(this.props.bookedCourseBookings).length === 0) {
             return (
                 <div className="booked-course-bookings-items clearfix">
-                    <AlertInfo type="info" text="You currently don't have any Booked Courses. Check the Dashboard for upcoming events."/>
+                    <AlertInfo type="info" text={LP('courseBookings', 'noBookedCourses', null)}/>
                 </div>
             )
         }
@@ -61,7 +62,7 @@ var BookedCourseBookings = React.createClass({
         return (
             <div className="booked-course-bookings">
                 <div className="booked-course-bookings-title">
-                    YOU Booked
+                    {LP('courseBookings', 'youBooked', null)}
                 </div>
                 {this.renderItems()}
                 

@@ -1,6 +1,6 @@
 import {
     BOOK_USER_INTO_EVENT,
-    CANCEL_USER_FROM_EVENT,
+    CANCEL_USER_FROM_EVENT
 } from '../actions/courseBookingsActions';
 
 import {

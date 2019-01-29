@@ -1,4 +1,5 @@
 import React from 'react';
+import LP from 'helpers/lp';
 import {
     FlatButton
 } from 'aptr-uikit';
@@ -41,7 +42,7 @@ var CourseBookingEventItem = React.createClass({
                     <FlatButton
                         className="course-booking-event-item-view-button"
                         onClick={() => this.props.onItemClicked(this.props.item)}
-                        text="View"
+                        text={LP('global', 'view', 'titlecase')}
                     />
                 </div>
             </div>
