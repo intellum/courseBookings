@@ -36,7 +36,8 @@ module.exports = {
     },
     "_places": {
         "type": "Number",
-        "label": "Places"
+        "label": "Places",
+        "minValueModelAttribute": "_users",
     },
     "_itemGraphic": {
         "type": "AssetUpload:Image:Small",
