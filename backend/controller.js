@@ -141,17 +141,19 @@ module.exports = {
     updateCourseBooking: function(req, callback) {
         CourseBooking.findByIdAndUpdate(
             req.params.id, 
-            req.body, {new: true}, function(err, courseBooking) {
+            req.body, {new: true}).populate({
+                path: '_users',
+                select: 'firstName lastName username email'
+            }).exec(function(err, courseBooking) {
                 
-            if (err) {
-                return callback(err);
-            }
-
-            return callback(null, {
-                _courseBooking: courseBooking
-            });
-
-        });
+                if (err) {
+                    return callback(err);
+                }
+    
+                return callback(null, {
+                    _courseBooking: courseBooking
+                });
+            })
     },
 
     bookUserIntoEvent: Promise.coroutine(function*(req, callback) {
@@ -186,6 +188,29 @@ module.exports = {
                     select: 'firstName lastName username email'
                 });
 
+            return callback(null, {
+                _courseBooking: courseBooking
+            });
+
+        } catch (err) {
+            return callback(err);
+        }
+    }),
+
+    addUsersIntoEvent: Promise.coroutine(function*(req, callback) {
+
+        try {            
+            var userIds = req.body.userIds;
+
+            var courseBooking = yield CourseBooking.findByIdAndUpdate(req.params.id, {
+                $pushAll: {
+                    "_users": userIds
+                }
+            }, {new: true}).populate({
+                path: '_users',
+                select: 'firstName lastName username email'
+            }).exec();               
+            
             return callback(null, {
                 _courseBooking: courseBooking
             });

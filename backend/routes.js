@@ -34,6 +34,12 @@ module.exports = function(app, passport, io) {
             DefaultRouteResponse(res, errObject, resObject);
         })
     });
+
+    app.post('/api/courseBookings/addUsers/:id', Auth.isAuthenticated, Permissions.isLearner, function(req, res) {
+        CourseBookings.addUsersIntoEvent(req, function(errObject, resObject) {
+            DefaultRouteResponse(res, errObject, resObject);
+        })
+    });
     
     app.put('/api/courseBookings/:id', Auth.isAuthenticated, Permissions.isAdmin, function(req, res) {
         CourseBookings.updateCourseBooking(req, function(errObject, resObject) {
