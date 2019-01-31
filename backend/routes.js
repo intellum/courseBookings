@@ -11,7 +11,7 @@ module.exports = function(app, passport, io) {
         })
     });
 
-    app.get('/api/courseBookings/:id', Auth.isAuthenticated, Permissions.isAdmin, function(req, res) {
+    app.get('/api/courseBookings/:id', Auth.isAuthenticated, Permissions.isLearner, function(req, res) {
         CourseBookings.fetchCourseBooking(req, function(errObject, resObject) {
             DefaultRouteResponse(res, errObject, resObject);
         })
@@ -31,6 +31,12 @@ module.exports = function(app, passport, io) {
 
     app.post('/api/courseBookings/cancel/:id', Auth.isAuthenticated, Permissions.isLearner, function(req, res) {
         CourseBookings.cancelUserFromEvent(req, function(errObject, resObject) {
+            DefaultRouteResponse(res, errObject, resObject);
+        })
+    });
+
+    app.post('/api/courseBookings/addUsers/:id', Auth.isAuthenticated, Permissions.isLearner, function(req, res) {
+        CourseBookings.addUsersIntoEvent(req, function(errObject, resObject) {
             DefaultRouteResponse(res, errObject, resObject);
         })
     });

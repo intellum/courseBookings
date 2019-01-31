@@ -1,4 +1,5 @@
 var Bloom = require(global.app + '/bloom');
+var Promise = require('bluebird');
 var async = require('async');
 var CourseBooking = require('./models/courseBooking');
 var User = require(global.app + '/models/user');
@@ -140,54 +141,84 @@ module.exports = {
     updateCourseBooking: function(req, callback) {
         CourseBooking.findByIdAndUpdate(
             req.params.id, 
-            req.body, {new: true}, function(err, courseBooking) {
+            req.body, {new: true}).populate({
+                path: '_users',
+                select: 'firstName lastName username email'
+            }).exec(function(err, courseBooking) {
                 
-            if (err) {
-                return callback(err);
-            }
-
-            return callback(null, {
-                _courseBooking: courseBooking
-            });
-
-        });
+                if (err) {
+                    return callback(err);
+                }
+    
+                return callback(null, {
+                    _courseBooking: courseBooking
+                });
+            })
     },
 
-    bookUserIntoEvent: function(req, callback) {
-        CourseBooking.findByIdAndUpdate(req.params.id, {
-            $push: {
-                "_users": req.body.userId
-            }
-        }, {new: true}, function(err, courseBooking) {
+    bookUserIntoEvent: Promise.coroutine(function*(req, callback) {
+
+        try {
             
-            if (err) {
-                return callback(err);
-            }
-
-            return callback(null, {
-                _courseBooking: courseBooking
-            });
-
-        });
-    },
-
-    cancelUserFromEvent: function(req, callback) {
-        CourseBooking.findByIdAndUpdate(req.params.id, {
-            $pullAll: {
-                "_users": [req.body.userId]
-            }
-        }, {new: true}, function(err, courseBooking) {
+            var courseBooking = yield CourseBooking.findByIdAndUpdate(req.params.id, {
+                $push: {
+                    "_users": req.body.userId
+                }
+            }, {new: true}).populate({
+                path: '_users',
+                select: 'firstName lastName username email'
+            })
+               
             
-            if (err) {
-                return callback(err);
-            }
+            return callback(null, {
+                _courseBooking: courseBooking
+            });
+
+        } catch (err) {
+            return callback(err);
+        }
+    }),
+
+    cancelUserFromEvent: Promise.coroutine(function*(req, callback) {
+
+        try {
+            var courseBooking = yield CourseBooking.findByIdAndUpdate(req.params.id, { $pullAll: { "_users": [req.body.userId]}}, { new: true })
+                .populate({
+                    path: '_users',
+                    select: 'firstName lastName username email'
+                });
 
             return callback(null, {
                 _courseBooking: courseBooking
             });
 
-        });
-    },
+        } catch (err) {
+            return callback(err);
+        }
+    }),
+
+    addUsersIntoEvent: Promise.coroutine(function*(req, callback) {
+
+        try {            
+            var userIds = req.body.userIds;
+
+            var courseBooking = yield CourseBooking.findByIdAndUpdate(req.params.id, {
+                $pushAll: {
+                    "_users": userIds
+                }
+            }, {new: true}).populate({
+                path: '_users',
+                select: 'firstName lastName username email'
+            }).exec();               
+            
+            return callback(null, {
+                _courseBooking: courseBooking
+            });
+
+        } catch (err) {
+            return callback(err);
+        }
+    }),
 
     downloadInvite: function(req, callback) {
 

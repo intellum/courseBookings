@@ -2,7 +2,7 @@ import React from 'react';
 import {DialogTitle, DialogBody, DialogActions} from 'modules/notifications/components/dialogComponents.js';
 import LP from 'helpers/lp';
 import Moment from 'moment';
-import {FlatButton, Button} from 'aptr-uikit';
+import {FlatButton, Button, Loading} from 'aptr-uikit';
 
 var CourseBookingsItemDialog = React.createClass({
 
@@ -114,16 +114,25 @@ var CourseBookingsItemDialog = React.createClass({
         );
     },
 
+    renderLoading: function() {
+        return ( 
+            <div className="dialog default-dialog course-booking-item-dialog">
+                <Loading text="Loading"/>
+            </div>
+        );
+    },
+
     render: function() {
 
+        if (this.props.isSyncing) {
+            return this.renderLoading();
+        }
+        
         var item = this.props.courseBooking;
 
-        if (!item) {
-            return null;
-        }
-
         var isUserAlreadyBooked = false;
-        if (_.includes(item._users, this.props.auth._id)) {
+                
+        if (_.find(item._users, {_id: this.props.auth._id})) {
             isUserAlreadyBooked = true;
         }
         

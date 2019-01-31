@@ -38,6 +38,8 @@ var EditCourseBooking = React.createClass({
         return (
             <EditCourseBookingUsers 
                 courseBooking={this.props.courseBooking}
+                onAddUsersClicked={this.props.onAddUsersClicked}
+                onRemoveUserFromEventClicked={this.props.onRemoveUserFromEventClicked}
             />
         );
     },

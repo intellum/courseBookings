@@ -7,6 +7,7 @@ export const CREATE_COURSE_BOOKING = 'CREATE_COURSE_BOOKING';
 export const UPDATE_COURSE_BOOKING = 'UPDATE_COURSE_BOOKING';
 export const BOOK_USER_INTO_EVENT = 'BOOK_USER_INTO_EVENT';
 export const CANCEL_USER_FROM_EVENT = 'CANCEL_USER_FROM_EVENT';
+export const ADD_USERS_INTO_EVENT = 'ADD_USERS_INTO_EVENT';
 export const DOWNLOAD_CALENDAR_INVITE = 'DOWNLOAD_CALENDAR_INVITE';
 
 export function fetchCourseBookings(searchValue, currentPage) {
@@ -119,6 +120,23 @@ export function cancelUserFromEvent(courseBookingId, userId) {
 
             dispatch({
                 type: CANCEL_USER_FROM_EVENT,
+                payload: response.data
+            })
+
+        })
+
+    }
+}
+
+export function addUsersIntoEvent(courseBookingId, userIds) {
+    return (dispatch) => {
+
+        return axios.post('api/courseBookings/addUsers/' + courseBookingId, {
+            userIds: userIds
+        })
+        .then(function(response) {
+            dispatch({
+                type: ADD_USERS_INTO_EVENT,
                 payload: response.data
             })
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import LP from 'helpers/lp';
 import AlertInfo from 'modules/app/components/alertInfo';
-import {ListItem} from 'aptr-uikit';
+import {Button, ListItem} from 'aptr-uikit';
 import getUsersFullName from 'helpers/getUsersFullName';
 
 var EditCourseBookingUsers = React.createClass({
@@ -15,10 +15,21 @@ var EditCourseBookingUsers = React.createClass({
     },
 
     renderUsers: function() {
-        return _.map(this.props.courseBooking._users, function(user) {
+
+        return _.map(this.props.courseBooking._users, (user) => {            
+            const { props } = this;
+
             return (
                 <div className="edit-course-booking-users-list-item">
                     <ListItem
+                        buttons={[{
+                            icon:"users-minus",
+                            type: "alert",
+                            toolTip: "Remove from event",
+                            onClick: () => {
+                                props.onRemoveUserFromEventClicked(user._id);
+                            } //`This` isn't defined
+                        }]}
                         itemText={getUsersFullName(user)}
                         itemDetail={user.email}
                         icon="calendar-text"
@@ -28,6 +39,19 @@ var EditCourseBookingUsers = React.createClass({
         })
     },
 
+    renderAddUsersButton: function() {
+        return (
+            <Button
+                text="Add Users"
+                icon="plus"
+                onClick={this.props.onAddUsersClicked}
+                disabled={this.props.isSyncing}
+                type="primary"
+                className="add-item-to-parent-button"
+            />
+        );
+    },
+
     render: function() {
         return (
             <div className="edit-course-booking-users">
@@ -35,6 +59,7 @@ var EditCourseBookingUsers = React.createClass({
                     {LP('courseBookings', 'usersIn', 'sentencecase')} {this.props.courseBooking.title}
                 </div>
                 <div className="edit-course-booking-users-list">
+                    {this.renderAddUsersButton()}
                     {this.renderNoUsersAlert()}
                     {this.renderUsers()}
                 </div>
