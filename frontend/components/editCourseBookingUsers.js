@@ -28,7 +28,7 @@ var EditCourseBookingUsers = React.createClass({
                             toolTip: "Remove from event",
                             onClick: () => {
                                 props.onRemoveUserFromEventClicked(user._id);
-                            } //`This` isn't defined
+                            }
                         }]}
                         itemText={getUsersFullName(user)}
                         itemDetail={user.email}
