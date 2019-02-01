@@ -203,8 +203,10 @@ module.exports = {
             var userIds = req.body.userIds;
 
             var courseBooking = yield CourseBooking.findByIdAndUpdate(req.params.id, {
-                $pushAll: {
-                    "_users": userIds
+                $push: {
+                    _users: {
+                        $each: userIds
+                    }
                 }
             }, {new: true}).populate({
                 path: '_users',
