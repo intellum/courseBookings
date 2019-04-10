@@ -14,9 +14,9 @@ var getDashboardItemSettings = require(global.app + '/helpers/settings/getDashbo
 var getMyLearningItemSettings = require(global.app + '/helpers/settings/getMyLearningItemSettings');
 var getBookedCourseBookings = require('./helpers/getBookedCourseBookings');
 
-Bloom.registerHook('dashboard:learner', function(dashboardData, currentData, callback) {
+Bloom.registerHook('dashboard:learner', Promise.coroutine(function*(dashboardData, currentData, callback) {
         
-    var courseBookingsSettings = getDashboardItemSettings(currentData.settings, 'learner', 'courseBookings');
+    var courseBookingsSettings = yield getDashboardItemSettings(currentData.settings, 'learner', 'courseBookings', currentData.user);
 
     if (courseBookingsSettings && courseBookingsSettings._isEnabled) {
 
@@ -30,7 +30,7 @@ Bloom.registerHook('dashboard:learner', function(dashboardData, currentData, cal
         return callback();
     }
 
-});
+}));
 
 Bloom.registerHook('myLearning', function(myLearningData, currentData, callback) {
 
