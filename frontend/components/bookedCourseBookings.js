@@ -60,7 +60,11 @@ var BookedCourseBookings = React.createClass({
     render: function() {
 
         return (
-            <div className="booked-course-bookings">
+            <div 
+                className="booked-course-bookings"
+                tabIndex="0"
+                aria-label="Course bookings. Here is a selection of the your course bookings."
+            >
                 <div className="booked-course-bookings-title">
                     {LP('courseBookings', 'youBooked', null)}
                 </div>
