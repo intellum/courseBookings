@@ -8,6 +8,8 @@ import {
     downloadCalendarInvite,
     fetchCourseBooking
 } from '../actions/courseBookingsActions';
+import {setAriaLiveRegion} from 'bloom';
+import LP from 'helpers/lp';
 
 var CourseBookingItemDialogContainer = React.createClass({
 
@@ -21,6 +23,8 @@ var CourseBookingItemDialogContainer = React.createClass({
     },
 
     componentDidMount: function() {
+
+        setAriaLiveRegion({ ariaLiveType: "assertive", ariaLiveText: LP('courseBookings', 'courseBookingItemDialogAriaLabel') });
     
         this.props.fetchCourseBooking(this.props.options.courseBookingId).then((response) => {
 
