@@ -45,7 +45,7 @@ var BookedCourseBookings = React.createClass({
         var leftCount = (Object.keys(this.props.bookedCourseBookings).length / 2);
 
         return (
-            <div className="booked-course-bookings-items clearfix">
+            <div className="booked-course-bookings-items clearfix" role="list">
                 <div className="booked-course-bookings-column-left">
                     {this.renderBookings('left', leftCount)}
                 </div>
