@@ -1,8 +1,9 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {connect} from 'react-redux';
 import {
     Loading
-} from 'aptr-uikit';
+} from 'uiKit';
 import {
     PageLoader
 } from 'modules/app';
@@ -23,11 +24,7 @@ import EditCourseBooking from '../components/editCourseBooking';
 import getUsersFullName from 'helpers/getUsersFullName';
 
 
-const EditCourseBookingContainer = React.createClass({
-
-    contextTypes: {
-        router: React.PropTypes.object
-    },
+const EditCourseBookingContainer = createReactClass({
 
     getInitialState: function() {
         return {
@@ -49,8 +46,8 @@ const EditCourseBookingContainer = React.createClass({
             _isSyncing: true
         })
         
-        this.props.fetchCourseBooking(this.props.params.id)
-        .then((function(response) {
+        this.props.fetchCourseBooking(this.props.match.params.id)
+            .then((function(response) {
             this.setState({
                 _isSyncing: false,
                 _hasDataLoaded: true,
@@ -59,11 +56,11 @@ const EditCourseBookingContainer = React.createClass({
             this.updateHeader();
         }).bind(this))
         .catch((function(response) {
-            if (response.data.error) {
+            if (response.error) {
                 this.setState({
                     _hasErrored: true,
-                    _statusCode: response.data._statusCode,
-                    errorMessage: response.data.message
+                    _statusCode: response._statusCode,
+                    errorMessage: response.message
                 })
             }
         }).bind(this))

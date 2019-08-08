@@ -11,8 +11,8 @@ import BookedCourseBookingsReducer from './reducers/bookedCourseBookingsReducer'
 registerMenuItem({text: 'Course Bookings', _link: "courseBookings", _icon: "calendar-text", _permission: "admin"}, 0);
 registerComponent('courseBookings', 'Course Bookings', CourseBookingsContainer, 'dashboard:learner');
 registerComponent('bookedCourseBookings', 'Booked Course Bookings', BookedCourseBookingsContainer, 'myLearning');
-registerRoute('courseBookings', CourseBookingsAdminContainer);
-registerRoute('courseBookings/:id', EditCourseBookingContainer);
+registerRoute('/courseBookings', CourseBookingsAdminContainer);
+registerRoute('/courseBookings/:id', EditCourseBookingContainer);
 registerReducer('courseBookings', CourseBookingsReducer);
 registerReducer('courseBooking', CourseBookingReducer);
 registerReducer('courseBookingsDashboard', CourseBookingDashboardReducer);

@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import LP from 'helpers/lp';
 import Moment from 'moment';
 import CourseBookingsEventItem from './courseBookingsEventItem';
@@ -6,7 +7,7 @@ import Waypoint from 'react-waypoint';
 import Scroll from 'react-scroll';
 var ScrollElement = Scroll.Element;
 
-var CourseBookingsUpcomingEvents = React.createClass({
+const CourseBookingsUpcomingEvents = createReactClass({
 
     onEnter: function(inviewData, date) {
         if (inviewData.previousPosition === 'above' && inviewData.currentPosition === 'inside') {

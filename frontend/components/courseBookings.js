@@ -1,9 +1,10 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import Moment from 'moment';
 import CourseBookingsCalendar from './courseBookingsCalendar';
 import CourseBookingsUpcomingEvents from './courseBookingsUpcomingEvents';
 
-var CourseBookings = React.createClass({
+const CourseBookings = createReactClass({
 
     render: function() {
         return (

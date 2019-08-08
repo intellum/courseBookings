@@ -1,10 +1,11 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {
     FlatButton
-} from 'aptr-uikit';
+} from 'uiKit';
 import Moment from 'moment';
 
-var BookedCourseBookingsItem = React.createClass({
+const BookedCourseBookingsItem = createReactClass({
 
     render: function() {
         return (

@@ -1,6 +1,7 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 
-const CourseBookingsCollectionItem = React.createClass({
+const CourseBookingsCollectionItem = createReactClass({
 
     render: function() {
         return (

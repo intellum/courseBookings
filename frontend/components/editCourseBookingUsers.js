@@ -1,10 +1,11 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import LP from 'helpers/lp';
 import AlertInfo from 'modules/app/components/alertInfo';
-import {Button, ListItem} from 'aptr-uikit';
+import {Button, ListItem} from 'uiKit';
 import getUsersFullName from 'helpers/getUsersFullName';
 
-var EditCourseBookingUsers = React.createClass({
+const EditCourseBookingUsers = createReactClass({
 
     renderNoUsersAlert: function() {
         if (this.props.courseBooking._users.length === 0) {

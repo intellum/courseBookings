@@ -1,9 +1,10 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import LP from 'helpers/lp';
 import CourseBookingsEventItem from './courseBookingsEventItem';
 import AlertInfo from 'modules/app/components/alertInfo';
 
-var BookedCourseBookings = React.createClass({
+const BookedCourseBookings = createReactClass({
 
     renderBookings: function(column, leftCount) {
         var index = -1;

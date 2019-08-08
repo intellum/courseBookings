@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {connect} from 'react-redux';
 import CourseBookings from '../components/courseBookings';
 import CourseBookingsItemDialogContainer from '../containers/courseBookingsItemDialogContainer';
@@ -8,7 +9,7 @@ import {addDialog} from 'modules/notifications/actions/notifications';
 var Scroller = Scroll.scroller;
 var ScrollerEvents = Scroll.Events;
 
-var CourseBookingsContainer = React.createClass({
+const CourseBookingsContainer = createReactClass({
 
     getInitialState: function() {
         return {
@@ -75,7 +76,7 @@ var CourseBookingsContainer = React.createClass({
         
         _.each(this.props.courseBookings, (courseBooking) => {
             
-            var CourseBookingStartDate = Moment(courseBooking._startDate).format('MM');
+            const CourseBookingStartDate = Moment(courseBooking._startDate).format('MM');
             var MonthDate = Moment(date).format('MM');
 
             if (CourseBookingStartDate === MonthDate && !foundFirstDateInMonth) {
