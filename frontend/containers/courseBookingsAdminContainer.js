@@ -98,7 +98,7 @@ const CourseBookingsAdminContainer = createReactClass({
             ]
         };
 
-        this.props.addDialog(courseBookingCreateDialog)
+        this.props.addDialog(CourseBookingCreateDialog)
             .then(response => {
                 if(response.action === 'add') {
                     this.props.createCourseBooking(response.payload)
@@ -121,9 +121,13 @@ const CourseBookingsAdminContainer = createReactClass({
         this.setState({
             searchValue: value
         }, function() {
-            this.fetchData(1);
+            this.onSearchUpdated();
         });
     },
+
+    onSearchUpdated: _.debounce(function () {
+        this.fetchData(1);
+    }, 600),
 
     render: function() {
         return (
