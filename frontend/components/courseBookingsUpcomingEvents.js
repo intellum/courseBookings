@@ -3,7 +3,7 @@ import createReactClass from 'create-react-class';
 import LP from 'helpers/lp';
 import Moment from 'moment';
 import CourseBookingsEventItem from './courseBookingsEventItem';
-import Waypoint from 'react-waypoint';
+import {Waypoint} from 'react-waypoint';
 import Scroll from 'react-scroll';
 var ScrollElement = Scroll.Element;
 

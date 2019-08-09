@@ -2,14 +2,14 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import LP from 'helpers/lp';
 import DatePicker from 'react-datepicker';
-import Moment from 'moment';
+import moment from 'moment';
 
 const CourseBookingsCalendar = createReactClass({
 
     render: function() {
         return (
             <div className="course-booking-calendar">
-                {/* <DatePicker
+                <DatePicker
                     inline
                     fixedHeight
                     selected={this.props.selectedDate}
@@ -18,8 +18,9 @@ const CourseBookingsCalendar = createReactClass({
                     todayButton={LP('courseBookings', 'today', 'titlecase')}
                     key={this.props.selectedDate}
                     includeDates={_.map(this.props.courseBookings, function(courseBooking) {
-                        return Moment(courseBooking._startDate);
-                    })} /> */}
+                        return moment(courseBooking._startDate).toDate();
+                    })}
+                />
             </div>
         );
     }
