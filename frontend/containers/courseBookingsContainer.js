@@ -34,7 +34,8 @@ const CourseBookingsContainer = createReactClass({
 
     updateCalendarSelectedDate: function(date) {
         if (this.isScrolling) return;
-        this.setState({selectedDate: date});
+        var correctedDate = moment(date).toDate() === date ? date : moment(date).toDate();
+            this.setState({selectedDate: correctedDate});
     },
 
     onDateSelected: function(date) {

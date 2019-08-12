@@ -11,19 +11,24 @@ const CourseBookingsUpcomingEvents = createReactClass({
 
     onEnter: function(inviewData, date) {
         if (inviewData.previousPosition === 'above' && inviewData.currentPosition === 'inside') {
-            this.props.updateCalendarSelectedDate(date);
+            var formattedDate = date === Moment(date).toDate() ? date : Moment(date).toDate();
+            this.props.updateCalendarSelectedDate(formattedDate);
         }
     },
 
     onLeave: function(inviewData, date) {
         if (inviewData.currentPosition === 'above' && inviewData.previousPosition === 'inside') {
-            this.props.updateCalendarSelectedDate(date);
+            var formattedDate = date === Moment(date).toDate() ? date : Moment(date).toDate();
+            this.props.updateCalendarSelectedDate(formattedDate);
         }
     },
 
     renderUpcomingEventItems: function() {
         var currentMonthIndex = null;
-        return _.map(this.props.courseBookings, (courseBooking) => {
+        var sortedCourseBookings = _.sortBy(this.props.courseBookings, function(dateObj) {
+            return new Date(dateObj._startDate);
+        });
+        return _.map(sortedCourseBookings, (courseBooking) => {
             var monthIndex = Moment(new Date(courseBooking._startDate), 'DD/MM/YYYY').month();
             var isStartOfMonth = false;
             if (currentMonthIndex != monthIndex) {
