@@ -1,6 +1,8 @@
 
 module.exports = {
     "db": {
+        "courseBookings": {"type": String, "default": "course bookings"},
+        "addACourseBooking": {"type": String, "default": "add a course booking"},
         "youBooked": {"type": String, "default": "YOU Booked"},
         "noBookedCourses": {"type": String, "default": "You currently don't have any Booked Courses. Check the Dashboard for upcoming events."},
         "noCourseBookingsAvailable": {"type": String, "default": "No Course Bookings available"},
@@ -18,6 +20,14 @@ module.exports = {
         "type": "Object",
         "label": "Course Bookings",
         "subSchema": {
+            "courseBookings": {
+                "type": "Text",
+                "label": "Course bookings"
+            },
+            "addACourseBooking": {
+                "type": "Text",
+                "label": "Add A Course Booking"
+            },
             "youBooked": {
                 "type": "Text",
                 "label": "You Booked"
