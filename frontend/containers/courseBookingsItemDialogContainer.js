@@ -46,7 +46,7 @@ const CourseBookingItemDialogContainer = createReactClass({
     },
 
     onDownloadCalendarInviteClicked: function() {
-        const CourseBookingId = this.props.courseBooking._id;
+        const courseBookingId = this.props.courseBooking._id;
         if (!window.location.origin) {
             window.location.origin = window.location.protocol+"//"+window.location.host;
         }
