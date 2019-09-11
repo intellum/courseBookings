@@ -69,9 +69,9 @@ const CourseBookingsUpcomingEvents = createReactClass({
     render: function() {
         return (
             <div className="course-booking-upcoming-events">
-                <div className="course-booking-upcoming-events-title">
+                <h2 className="course-booking-upcoming-events-title">
                     {LP('courseBookings', 'upcomingEvents', 'titlecase')}
-                </div>
+                </h2>
                 <div className="course-booking-upcoming-events-items" id="course-booking-upcoming-events-items">
                     <div className="course-booking-event-divider">
                         <Waypoint

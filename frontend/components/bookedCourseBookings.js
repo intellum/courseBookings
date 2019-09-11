@@ -62,9 +62,9 @@ const BookedCourseBookings = createReactClass({
 
         return (
             <div className="booked-course-bookings">
-                <div className="booked-course-bookings-title">
+                <h2 className="booked-course-bookings-title">
                     {LP('courseBookings', 'youBooked', null)}
-                </div>
+                </h2>
                 {this.renderItems()}
                 
             </div>
