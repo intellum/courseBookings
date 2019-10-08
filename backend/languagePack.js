@@ -12,7 +12,9 @@ module.exports = {
         "upcomingEvents": {"type": String, "default": "upcoming events"},
         "noUsersAreAttendingThisEvent": {"type": String, "default": "No users are attending this event"},
         "usersIn": {"type": String, "default": "users in"},
-        "today": {"type": String, "default": "today"}
+        "today": {"type": String, "default": "today"},
+        "courseBooking": {"type": String, "default": "course booking"},
+        "courseBookingItemDialogAriaLabel": {"type": String, "default": "this is a course booking dialog. here you will find more details about this booking"}
     },
     "form": {
         "type": "Object",
@@ -65,6 +67,14 @@ module.exports = {
             "today": {
                 "type": "Text",
                 "label": "Today"
+            },
+            "courseBooking": {
+                "type": "Text",
+                "label": "Course Booking"
+            },
+            "courseBookingItemDialogAriaLabel": {
+                "type": "Text",
+                "label": "Course Booking Dialog Aria Label. This is the text that a screen reader will use to describe this dialog"
             }
         }
     }

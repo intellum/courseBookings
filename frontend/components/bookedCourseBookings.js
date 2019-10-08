@@ -45,7 +45,7 @@ var BookedCourseBookings = React.createClass({
         var leftCount = (Object.keys(this.props.bookedCourseBookings).length / 2);
 
         return (
-            <div className="booked-course-bookings-items clearfix">
+            <div className="booked-course-bookings-items clearfix" role="list">
                 <div className="booked-course-bookings-column-left">
                     {this.renderBookings('left', leftCount)}
                 </div>
@@ -60,13 +60,13 @@ var BookedCourseBookings = React.createClass({
     render: function() {
 
         return (
-            <div className="booked-course-bookings">
+            <section className="booked-course-bookings" aria-label={LP('myLearning', 'courseBookingsSectionAriaLabel', 'sentencecase')}>
                 <div className="booked-course-bookings-title">
                     {LP('courseBookings', 'youBooked', null)}
                 </div>
                 {this.renderItems()}
                 
-            </div>
+            </section>
         );
     }
 
