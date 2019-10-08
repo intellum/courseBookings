@@ -72,7 +72,7 @@ const EditCourseBookingContainer = createReactClass({
         return this.props.updateHeader({
             breadcrumbs: [
                 {
-                    text: 'Course Bookings',
+                    text: LP('courseBookings', 'courseBookings', 'titlecase'),
                     path: '/courseBookings'
                 },
                 {

@@ -31,7 +31,6 @@ const CourseBookingsAdminContainer = createReactClass({
     },
 
     componentDidMount: function() {
-        this.updateHeader();
         this.fetchData(this.state._currentPage);
     },
 
@@ -48,6 +47,7 @@ const CourseBookingsAdminContainer = createReactClass({
                 _totalPages: response.data._totalPages,
                 _schema: response.data._schema
             });
+            this.updateHeader();
         })
         .catch((response) => {
             if (response.data.error) {
@@ -61,10 +61,10 @@ const CourseBookingsAdminContainer = createReactClass({
     },
 
     updateHeader: function() {
-         this.props.updateHeader({
+        return this.props.updateHeader({
              breadcrumbs: [
                  {
-                     text: 'Course Bookings'
+                     text: LP('courseBookings', 'courseBookings', 'titlecase')
                  }
              ]
         });
@@ -78,7 +78,7 @@ const CourseBookingsAdminContainer = createReactClass({
 
         const CourseBookingCreateDialog = {
             dialogType: 'default',
-            title: 'Add a Course Booking',
+            title: LP('courseBookings', 'addACourseBooking', 'titlecase'),
             body: '',
             options: {
                 schema: this.state._schema
