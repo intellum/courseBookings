@@ -10,7 +10,7 @@ import {
 import { addDialog } from 'modules/notifications/actions/notifications';
 import PaginatedCheckDialog from 'modules/notifications/components/paginatedCheckDialog';
 import {updateHeader} from 'modules/app/actions/appActions';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import {
     fetchCourseBooking,
     updateCourseBooking,
@@ -21,7 +21,7 @@ import {
     fetchUsersByMultipleGroups
 } from 'modules/users/actions/usersActions'
 import EditCourseBooking from '../components/editCourseBooking';
-import getUsersFullName from 'helpers/getUsersFullName';
+import getUsersFullName from 'modules/app/helpers/getUsersFullName';
 
 
 const EditCourseBookingContainer = createReactClass({
@@ -72,7 +72,7 @@ const EditCourseBookingContainer = createReactClass({
         return this.props.updateHeader({
             breadcrumbs: [
                 {
-                    text: LP('courseBookings', 'courseBookings', 'titlecase'),
+                    text: 'Course Bookings',
                     path: '/courseBookings'
                 },
                 {

@@ -9,7 +9,7 @@ import {
 } from 'modules/app';
 import {addDialog} from 'modules/notifications/actions/notifications';
 import {updateHeader} from 'modules/app/actions/appActions';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import CourseBookingsCollection from '../components/courseBookingsCollection';
 import AddCourseBookingForm from '../components/addCourseBookingForm';
 import {
@@ -31,6 +31,7 @@ const CourseBookingsAdminContainer = createReactClass({
     },
 
     componentDidMount: function() {
+        this.updateHeader();
         this.fetchData(this.state._currentPage);
     },
 
@@ -47,7 +48,6 @@ const CourseBookingsAdminContainer = createReactClass({
                 _totalPages: response.data._totalPages,
                 _schema: response.data._schema
             });
-            this.updateHeader();
         })
         .catch((response) => {
             if (response.data.error) {
@@ -61,10 +61,10 @@ const CourseBookingsAdminContainer = createReactClass({
     },
 
     updateHeader: function() {
-        return this.props.updateHeader({
+         this.props.updateHeader({
              breadcrumbs: [
                  {
-                     text: LP('courseBookings', 'courseBookings', 'titlecase')
+                     text: 'Course Bookings'
                  }
              ]
         });
@@ -78,7 +78,7 @@ const CourseBookingsAdminContainer = createReactClass({
 
         const CourseBookingCreateDialog = {
             dialogType: 'default',
-            title: LP('courseBookings', 'addACourseBooking', 'titlecase'),
+            title: 'Add a Course Booking',
             body: '',
             options: {
                 schema: this.state._schema

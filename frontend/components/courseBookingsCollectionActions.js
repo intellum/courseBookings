@@ -3,7 +3,7 @@ import createReactClass from 'create-react-class';
 import {
     Button
 } from 'uiKit';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 
 const CourseBookingsCollectionActions = createReactClass({
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import CourseBookingsEventItem from './courseBookingsEventItem';
 import AlertInfo from 'modules/app/components/alertInfo';
 
@@ -46,7 +46,7 @@ const BookedCourseBookings = createReactClass({
         var leftCount = (Object.keys(this.props.bookedCourseBookings).length / 2);
 
         return (
-            <div className="booked-course-bookings-items clearfix" role="list">
+            <div className="booked-course-bookings-items clearfix">
                 <div className="booked-course-bookings-column-left">
                     {this.renderBookings('left', leftCount)}
                 </div>
@@ -61,13 +61,13 @@ const BookedCourseBookings = createReactClass({
     render: function() {
 
         return (
-            <section className="booked-course-bookings" aria-label={LP('myLearning', 'courseBookingsSectionAriaLabel', 'sentencecase')}>
+            <div className="booked-course-bookings">
                 <h2 className="booked-course-bookings-title">
                     {LP('courseBookings', 'youBooked', null)}
                 </h2>
                 {this.renderItems()}
                 
-            </section>
+            </div>
         );
     }
 

@@ -2,15 +2,13 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import {connect} from 'react-redux';
 import CourseBookingItemDialog from '../components/courseBookingsItemDialog';
-import handleContainerError from 'helpers/handleContainerError';
+import handleContainerError from 'modules/app/helpers/handleContainerError';
 import {
     bookUserIntoEvent,
     cancelUserFromEvent,
     downloadCalendarInvite,
     fetchCourseBooking
 } from '../actions/courseBookingsActions';
-import {setAriaLiveRegion} from 'bloom';
-import LP from 'helpers/lp';
 
 const CourseBookingItemDialogContainer = createReactClass({
 
@@ -24,8 +22,6 @@ const CourseBookingItemDialogContainer = createReactClass({
     },
 
     componentDidMount: function() {
-
-        setAriaLiveRegion({ ariaLiveType: "assertive", ariaLiveText: LP('courseBookings', 'courseBookingItemDialogAriaLabel') });
     
         this.props.fetchCourseBooking(this.props.options.courseBookingId).then((response) => {
 

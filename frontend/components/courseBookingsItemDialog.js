@@ -1,26 +1,25 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import {DialogTitle, DialogBody, DialogActions} from 'modules/notifications/components/dialogComponents.js';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import Moment from 'moment';
-import FocusLock from 'react-focus-lock';
 import {FlatButton, Button, Loading} from 'uiKit';
 
 const CourseBookingsItemDialog = createReactClass({
 
     renderTitle: function(item) {
         return (
-            <h1 className="course-booking-item-dialog-title">
+            <div className="course-booking-item-dialog-title">
                 {item.displayTitle}
-            </h1>
+            </div>
         );
     },
 
     renderDescription: function(item) {
         return (
-            <p className="course-booking-item-dialog-description">
+            <div className="course-booking-item-dialog-description">
                 {item.description}
-            </p>
+            </div>
         );
     },
 
@@ -37,17 +36,17 @@ const CourseBookingsItemDialog = createReactClass({
         }
 
         return (
-            <p className="course-booking-item-dialog-event-date">
+            <div className="course-booking-item-dialog-event-date">
                 {formattedStartDate} - {formattedEndDate}
-            </p>
+            </div>
         );
     },
 
     renderLocation: function(item) {
         return (
-            <p className="course-booking-item-dialog-location">
+            <div className="course-booking-item-dialog-location">
                 {item._location}
-            </p>
+            </div>
         );
     },
 
@@ -100,10 +99,10 @@ const CourseBookingsItemDialog = createReactClass({
     renderPlacesLeft: function(item) {
         var placesLeft = item._places - item._users.length;
         return (
-            <p className="course-booking-item-dialog-places-left" aria-label={placesLeft + ' ' + LP('courseBookings', 'placesLeft', 'lowercase').replace(/[)(]/g,'')}>
-                <span aria-hidden className="course-booking-item-dialog-places-left-count">{placesLeft} </span> 
-                <span aria-hidden>{LP('courseBookings', 'placesLeft', 'lowercase')}</span>
-            </p>
+            <div className="course-booking-item-dialog-places-left">
+                <span className="course-booking-item-dialog-places-left-count">{placesLeft} </span> 
+                {LP('courseBookings', 'placesLeft', 'lowercase')}
+            </div>
         );
     },
 
@@ -140,16 +139,14 @@ const CourseBookingsItemDialog = createReactClass({
         
         return (
             <div className="dialog default-dialog course-booking-item-dialog">
-                <FocusLock returnFocus>
-                    {this.renderTitle(item)}
-                    {this.renderDescription(item)}
-                    {this.renderEventDate(item)}
-                    {this.renderLocation(item)}
-                    {this.renderBookingButton(item, isUserAlreadyBooked)}
-                    {this.renderCalendarInvite(item, isUserAlreadyBooked)}
-                    {this.renderPlacesLeft(item)}
-                    {this.renderActions()}
-                </FocusLock>
+                {this.renderTitle(item)}
+                {this.renderDescription(item)}
+                {this.renderEventDate(item)}
+                {this.renderLocation(item)}
+                {this.renderBookingButton(item, isUserAlreadyBooked)}
+                {this.renderCalendarInvite(item, isUserAlreadyBooked)}
+                {this.renderPlacesLeft(item)}
+                {this.renderActions()}
             </div>
         );
     }

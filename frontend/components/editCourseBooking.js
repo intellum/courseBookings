@@ -1,7 +1,7 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import Tabs from 'modules/app/components/tabs';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import {Form} from 'modules/form';
 import EditCourseBookingUsers from './editCourseBookingUsers';
 

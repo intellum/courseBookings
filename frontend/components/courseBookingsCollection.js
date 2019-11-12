@@ -10,7 +10,7 @@ import {
 } from 'uiKit';
 import CourseBookingsCollectionItem from './courseBookingsCollectionItem';
 import CourseBookingsCollectionActions from './courseBookingsCollectionActions';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import AlertInfo from 'modules/app/components/alertInfo';
 
 const CourseBookingsCollection = createReactClass({
