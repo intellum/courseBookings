@@ -1,7 +1,7 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
 import {DialogTitle, DialogBody, DialogActions} from 'modules/notifications/components/dialogComponents.js';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import Moment from 'moment';
 import {FlatButton, Button, Loading} from 'uiKit';
 

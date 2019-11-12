@@ -9,7 +9,7 @@ import {
 } from 'modules/app';
 import {addDialog} from 'modules/notifications/actions/notifications';
 import {updateHeader} from 'modules/app/actions/appActions';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import CourseBookingsCollection from '../components/courseBookingsCollection';
 import AddCourseBookingForm from '../components/addCourseBookingForm';
 import {

@@ -2,7 +2,7 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import Bluebird from 'bluebird';
 import {DialogTitle, DialogBody, DialogActions} from 'modules/notifications/components/dialogComponents.js';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import Moment from 'moment';
 import {FlatButton, Button} from 'uiKit';
 import {Form} from 'modules/form';
