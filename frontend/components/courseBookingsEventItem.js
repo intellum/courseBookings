@@ -1,13 +1,14 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import LP from 'helpers/lp';
 import {
     FlatButton
-} from 'aptr-uikit';
+} from 'uiKit';
 import Moment from 'moment';
 import classnames from 'classnames';
 import NavigationLink from 'modules/app/components/navigationLink';
 
-var CourseBookingEventItem = React.createClass({
+const CourseBookingEventItem = createReactClass({
 
     getClassName: function() {
         return classnames("course-booking-event-item", {

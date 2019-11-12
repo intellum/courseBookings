@@ -1,8 +1,9 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {connect} from 'react-redux';
 import {
     Loading
-} from 'aptr-uikit';
+} from 'uiKit';
 import {
     PageLoader
 } from 'modules/app';
@@ -16,11 +17,7 @@ import {
     createCourseBooking
 } from '../actions/courseBookingsActions';
 
-const CourseBookingsAdminContainer = React.createClass({
-
-    contextTypes: {
-        router: React.PropTypes.object
-    },
+const CourseBookingsAdminContainer = createReactClass({
 
     getInitialState: function() {
         return {
@@ -34,11 +31,10 @@ const CourseBookingsAdminContainer = React.createClass({
     },
 
     componentDidMount: function() {
-        this.updateHeader();
         this.fetchData(this.state._currentPage);
     },
 
-    fetchData: function(currentPage) {
+    fetchData: function(currentPage) { 
         this.setState({
             _isSyncing: true
         })
@@ -51,6 +47,7 @@ const CourseBookingsAdminContainer = React.createClass({
                 _totalPages: response.data._totalPages,
                 _schema: response.data._schema
             });
+            this.updateHeader();
         })
         .catch((response) => {
             if (response.data.error) {
@@ -64,24 +61,24 @@ const CourseBookingsAdminContainer = React.createClass({
     },
 
     updateHeader: function() {
-         this.props.updateHeader({
+        return this.props.updateHeader({
              breadcrumbs: [
                  {
-                     text: 'Course Bookings'
+                     text: LP('courseBookings', 'courseBookings', 'titlecase')
                  }
              ]
         });
     },
 
     editCourseBooking: function(courseBookingId) {
-        this.context.router.replace('/courseBookings/' + courseBookingId);
+        this.props.history.push('/courseBookings/' + courseBookingId);
     },
 
     onCreateCourseBookingClicked: function() {
 
-        var courseBookingCreateDialog = {
+        const CourseBookingCreateDialog = {
             dialogType: 'default',
-            title: 'Add a Course Booking',
+            title: LP('courseBookings', 'addACourseBooking', 'titlecase'),
             body: '',
             options: {
                 schema: this.state._schema
@@ -101,12 +98,12 @@ const CourseBookingsAdminContainer = React.createClass({
             ]
         };
 
-        this.props.addDialog(courseBookingCreateDialog)
+        this.props.addDialog(CourseBookingCreateDialog)
             .then(response => {
                 if(response.action === 'add') {
                     this.props.createCourseBooking(response.payload)
                         .then((response) => {
-                            this.context.router.replace('/courseBookings/' + this.props.courseBooking._id);
+                            this.props.history.push('/courseBookings/' + this.props.courseBooking._id);
                         });
                 }
             });
@@ -124,9 +121,13 @@ const CourseBookingsAdminContainer = React.createClass({
         this.setState({
             searchValue: value
         }, function() {
-            this.fetchData(1);
+            this.onSearchUpdated();
         });
     },
+
+    onSearchUpdated: _.debounce(function () {
+        this.fetchData(1);
+    }, 600),
 
     render: function() {
         return (

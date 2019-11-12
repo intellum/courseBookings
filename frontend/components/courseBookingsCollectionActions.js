@@ -1,10 +1,11 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {
     Button
-} from 'aptr-uikit';
+} from 'uiKit';
 import LP from 'helpers/lp';
 
-const CourseBookingsCollectionActions = React.createClass({
+const CourseBookingsCollectionActions = createReactClass({
 
     onEditCourseBookingClicked: function(event) {
         event.preventDefault();

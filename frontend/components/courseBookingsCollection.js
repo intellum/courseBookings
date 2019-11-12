@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {
     ActionBar,
     Button,
@@ -6,13 +7,13 @@ import {
     Loading,
     Pagination,
     SearchBar
-} from 'aptr-uikit';
+} from 'uiKit';
 import CourseBookingsCollectionItem from './courseBookingsCollectionItem';
 import CourseBookingsCollectionActions from './courseBookingsCollectionActions';
 import LP from 'helpers/lp';
 import AlertInfo from 'modules/app/components/alertInfo';
 
-var CourseBookingsCollection = React.createClass({
+const CourseBookingsCollection = createReactClass({
 
     renderCourseBookingsList: function() {
         return (

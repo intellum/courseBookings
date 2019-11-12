@@ -1,9 +1,10 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import LP from 'helpers/lp';
 import CourseBookingsEventItem from './courseBookingsEventItem';
 import AlertInfo from 'modules/app/components/alertInfo';
 
-var BookedCourseBookings = React.createClass({
+const BookedCourseBookings = createReactClass({
 
     renderBookings: function(column, leftCount) {
         var index = -1;
@@ -61,9 +62,9 @@ var BookedCourseBookings = React.createClass({
 
         return (
             <section className="booked-course-bookings" aria-label={LP('myLearning', 'courseBookingsSectionAriaLabel', 'sentencecase')}>
-                <div className="booked-course-bookings-title">
+                <h2 className="booked-course-bookings-title">
                     {LP('courseBookings', 'youBooked', null)}
-                </div>
+                </h2>
                 {this.renderItems()}
                 
             </section>
