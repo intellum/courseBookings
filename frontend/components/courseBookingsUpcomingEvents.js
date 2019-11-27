@@ -1,28 +1,34 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import LP from 'helpers/lp';
 import Moment from 'moment';
 import CourseBookingsEventItem from './courseBookingsEventItem';
-import Waypoint from 'react-waypoint';
+import {Waypoint} from 'react-waypoint';
 import Scroll from 'react-scroll';
 var ScrollElement = Scroll.Element;
 
-var CourseBookingsUpcomingEvents = React.createClass({
+const CourseBookingsUpcomingEvents = createReactClass({
 
     onEnter: function(inviewData, date) {
         if (inviewData.previousPosition === 'above' && inviewData.currentPosition === 'inside') {
-            this.props.updateCalendarSelectedDate(date);
+            var formattedDate = date === Moment(date).toDate() ? date : Moment(date).toDate();
+            this.props.updateCalendarSelectedDate(formattedDate);
         }
     },
 
     onLeave: function(inviewData, date) {
         if (inviewData.currentPosition === 'above' && inviewData.previousPosition === 'inside') {
-            this.props.updateCalendarSelectedDate(date);
+            var formattedDate = date === Moment(date).toDate() ? date : Moment(date).toDate();
+            this.props.updateCalendarSelectedDate(formattedDate);
         }
     },
 
     renderUpcomingEventItems: function() {
         var currentMonthIndex = null;
-        return _.map(this.props.courseBookings, (courseBooking) => {
+        var sortedCourseBookings = _.sortBy(this.props.courseBookings, function(dateObj) {
+            return new Date(dateObj._startDate);
+        });
+        return _.map(sortedCourseBookings, (courseBooking) => {
             var monthIndex = Moment(new Date(courseBooking._startDate), 'DD/MM/YYYY').month();
             var isStartOfMonth = false;
             if (currentMonthIndex != monthIndex) {
@@ -63,9 +69,9 @@ var CourseBookingsUpcomingEvents = React.createClass({
     render: function() {
         return (
             <div className="course-booking-upcoming-events">
-                <div className="course-booking-upcoming-events-title">
+                <h2 className="course-booking-upcoming-events-title">
                     {LP('courseBookings', 'upcomingEvents', 'titlecase')}
-                </div>
+                </h2>
                 <div className="course-booking-upcoming-events-items" id="course-booking-upcoming-events-items">
                     <div className="course-booking-event-divider">
                         <Waypoint

@@ -1,18 +1,19 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {connect} from 'react-redux';
 import CourseBookings from '../components/courseBookings';
 import CourseBookingsItemDialogContainer from '../containers/courseBookingsItemDialogContainer';
-import Moment from 'moment';
+import moment from 'moment';
 import Scroll from 'react-scroll';
 import {addDialog} from 'modules/notifications/actions/notifications';
 var Scroller = Scroll.scroller;
 var ScrollerEvents = Scroll.Events;
 
-var CourseBookingsContainer = React.createClass({
+const CourseBookingsContainer = createReactClass({
 
     getInitialState: function() {
         return {
-            selectedDate: Moment()
+            selectedDate: moment().toDate()
         }
     },
 
@@ -33,12 +34,13 @@ var CourseBookingsContainer = React.createClass({
 
     updateCalendarSelectedDate: function(date) {
         if (this.isScrolling) return;
-        this.setState({selectedDate: date});
+        var correctedDate = moment(date).toDate() === date ? date : moment(date).toDate();
+            this.setState({selectedDate: correctedDate});
     },
 
     onDateSelected: function(date) {
         this.setState({selectedDate: date});
-        Scroller.scrollTo(date.format('DD/MM/YYYY'), {
+        Scroller.scrollTo(moment(date).format('DD/MM/YYYY'), {
             duration: 300,
             delay: 0,
             smooth: true,
@@ -75,19 +77,19 @@ var CourseBookingsContainer = React.createClass({
         
         _.each(this.props.courseBookings, (courseBooking) => {
             
-            var CourseBookingStartDate = Moment(courseBooking._startDate).format('MM');
-            var MonthDate = Moment(date).format('MM');
+            const CourseBookingStartDate = moment(courseBooking._startDate).format('MM');
+            var MonthDate = moment(date).format('MM');
 
             if (CourseBookingStartDate === MonthDate && !foundFirstDateInMonth) {
                 foundFirstDateInMonth = true;
                 
-                var scrollToName = date.format('MM') + '-after';
+                var scrollToName = moment(date).format('MM') + '-after';
                 
-                if (date.isBefore(this.state.selectedDate)) {
-                    scrollToName = date.format('MM') + '-before';
+                if (moment(date).isBefore(this.state.selectedDate)) {
+                    scrollToName = moment(date).format('MM') + '-before';
                 }
 
-                this.setState({selectedDate: Moment(courseBooking._startDate)});
+                this.setState({selectedDate: moment(courseBooking._startDate).toDate()});
                 
                 Scroller.scrollTo(scrollToName, {
                     duration: 300,

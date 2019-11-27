@@ -1,4 +1,5 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {connect} from 'react-redux';
 import CourseBookingItemDialog from '../components/courseBookingsItemDialog';
 import handleContainerError from 'helpers/handleContainerError';
@@ -11,7 +12,7 @@ import {
 import {setAriaLiveRegion} from 'bloom';
 import LP from 'helpers/lp';
 
-var CourseBookingItemDialogContainer = React.createClass({
+const CourseBookingItemDialogContainer = createReactClass({
 
     getInitialState: function() {
         return {
@@ -49,7 +50,7 @@ var CourseBookingItemDialogContainer = React.createClass({
     },
 
     onDownloadCalendarInviteClicked: function() {
-        var courseBookingId = this.props.courseBooking._id;
+        const courseBookingId = this.props.courseBooking._id;
         if (!window.location.origin) {
             window.location.origin = window.location.protocol+"//"+window.location.host;
         }

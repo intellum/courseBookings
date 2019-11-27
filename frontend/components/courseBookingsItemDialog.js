@@ -1,11 +1,12 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {DialogTitle, DialogBody, DialogActions} from 'modules/notifications/components/dialogComponents.js';
 import LP from 'helpers/lp';
 import Moment from 'moment';
-import {FlatButton, Button, Loading} from 'aptr-uikit';
+import {FlatButton, Button, Loading} from 'uiKit';
 import FocusLock from 'react-focus-lock';
 
-var CourseBookingsItemDialog = React.createClass({
+const CourseBookingsItemDialog = createReactClass({
 
     renderTitle: function(item) {
         return (

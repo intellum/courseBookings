@@ -1,10 +1,11 @@
 import React from 'react';
+import createReactClass from 'create-react-class';
 import {connect} from 'react-redux';
 import BookedCourseBookings from '../components/bookedCourseBookings';
 import {addDialog} from 'modules/notifications/actions/notifications';
 import CourseBookingsItemDialogContainer from '../containers/courseBookingsItemDialogContainer';
 
-var BookedCourseBookingsContainer = React.createClass({
+var BookedCourseBookingsContainer = createReactClass({
 
     onItemClicked: function(item) {
         this.props.addDialog({
