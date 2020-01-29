@@ -10,7 +10,7 @@ import {
     fetchCourseBooking
 } from '../actions/courseBookingsActions';
 import {setAriaLiveRegion} from 'bloom';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 
 const CourseBookingItemDialogContainer = createReactClass({
 
