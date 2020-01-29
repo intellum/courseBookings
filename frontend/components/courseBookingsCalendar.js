@@ -1,6 +1,6 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 

@@ -1,5 +1,5 @@
 import {registerComponent, registerMenuItem, registerRoute, registerReducer} from 'bloom';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import CourseBookingsContainer from './containers/courseBookingsContainer';
 import CourseBookingsAdminContainer from './containers/courseBookingsAdminContainer';
 import EditCourseBookingContainer from './containers/editCourseBookingContainer';

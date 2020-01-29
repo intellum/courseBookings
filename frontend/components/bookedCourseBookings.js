@@ -1,6 +1,6 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import CourseBookingsEventItem from './courseBookingsEventItem';
 import AlertInfo from 'modules/app/components/alertInfo';
 

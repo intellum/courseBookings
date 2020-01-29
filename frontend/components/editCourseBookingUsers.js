@@ -1,9 +1,9 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import AlertInfo from 'modules/app/components/alertInfo';
 import {Button, ListItem} from 'uiKit';
-import getUsersFullName from 'helpers/getUsersFullName';
+import getUsersFullName from 'modules/app/helpers/getUsersFullName';
 
 const EditCourseBookingUsers = createReactClass({
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import createReactClass from 'create-react-class';
-import LP from 'helpers/lp';
+import LP from 'modules/app/helpers/lp';
 import Moment from 'moment';
 import CourseBookingsEventItem from './courseBookingsEventItem';
 import {Waypoint} from 'react-waypoint';

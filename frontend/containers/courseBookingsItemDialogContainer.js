@@ -2,7 +2,7 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import {connect} from 'react-redux';
 import CourseBookingItemDialog from '../components/courseBookingsItemDialog';
-import handleContainerError from 'helpers/handleContainerError';
+import handleContainerError from 'modules/app/helpers/handleContainerError';
 import {
     bookUserIntoEvent,
     cancelUserFromEvent,
